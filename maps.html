@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>羽毛信 · 鸟群地图设计</title>
   <link rel="icon" href="assets/brand/feather-letter-mark.svg?v=20260802-logo3" type="image/svg+xml">
-  <link rel="stylesheet" href="maps.css?v=20260802-logo3">
+  <link rel="stylesheet" href="maps.css?v=20260802-data1">
   <link rel="stylesheet" href="maps-refined.css?v=20260802-logo3">
 </head>
 <body class="map-style-d">
@@ -54,7 +54,7 @@
           <g id="flockLayer"></g>
           <rect class="texture" width="1000" height="520" filter="url(#paperNoise)"/>
         </svg>
-        <div class="map-key"><span><i class="three-birds">⌁⌁⌁</i> 同一网格的一群记录</span><span><i class="dot"></i> 记录越集中，飞鸟图标越多</span></div>
+        <div class="map-key"><span><i class="three-birds">⌁⌁⌁</i> 同一网格的一群记录</span><span><i class="dot"></i> 记录越集中，飞鸟图标越多</span><span>空月以邻月范围淡显</span></div>
         <div class="focus-label">EAST ASIA · 70°E—180°E</div>
       </div>
 
@@ -77,9 +77,10 @@
       </div>
       <div class="quality-card">
         <b>这张图能说明什么？</b>
-        <p>图标位置来自 2016–2026 年 GBIF 带坐标的“存在”记录，按月份和约 10°网格聚合。它说明公开记录集中在哪里，不等于真实种群数量。</p>
+        <p>图标位置来自 2016–2026 年 GBIF 带坐标的“存在”记录，按月份和约 10°网格聚合。它说明公开记录集中在哪里，不等于真实种群数量；当月无记录时会淡显最近前后月份的范围参考。</p>
         <dl><div><dt>空间粒度</dt><dd>约 10° 网格</dd></div><div><dt>精确坐标</dt><dd>不公开</dd></div><div><dt>当前样本</dt><dd id="sampleCount">—</dd></div></dl>
         <a href="https://techdocs.gbif.org/en/openapi/v1/occurrence" target="_blank" rel="noreferrer">查看 GBIF Occurrence API ↗</a>
+        <a href="https://github.com/silver-lynn/feather-letter/blob/main/DATA_QUALITY.md" target="_blank" rel="noreferrer">查看数据质量审计 ↗</a>
       </div>
       <p class="warning" id="dataWarning"></p>
     </aside>
@@ -87,7 +88,7 @@
 
   <footer><span>用于设计确认 · 鸟群符号表示相对记录强弱</span><span>Natural Earth 边界 · GBIF occurrence data</span></footer>
   <script src="extra-birds.js?v=20260802"></script>
-  <script src="maps.js?v=20260802"></script>
+  <script src="maps.js?v=20260802-data1"></script>
   <script src="bird-visuals.js"></script>
   <script src="location-picker.js"></script>
 </body>

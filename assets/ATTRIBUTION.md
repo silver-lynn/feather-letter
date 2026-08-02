@@ -12,8 +12,11 @@
 `data/countries.geojson` 来自 Natural Earth 1:110m 国家边界数据，公共领域：
 https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson
 
-`data/gbif-monthly-clusters.json` 由 `scripts/build_gbif_flows.py` 从 GBIF Occurrence API 生成。筛选口径为 2016–2026 年、带坐标、无已标记空间问题、状态为 PRESENT 的记录；按月份抽样并聚合到约 10° 网格。它反映公开存在记录的相对集中程度，不是种群数量或无偏丰度估计：
+`data/gbif-monthly-clusters.json` 由 `scripts/build_gbif_flows.py` 从 GBIF Occurrence API 生成。筛选口径为 2016–2026 年、带坐标、无已标记空间问题、状态为 PRESENT 的记录；按月份抽样并聚合到约 10° 网格。当前发布文件每个物种—月份最多使用 API 首批 300 条结果，因此只适合作为公开记录分布样张，不是完整清单、种群数量或无偏丰度估计。新版生成脚本会在最多五个分页位置进行分层抽样，降低只取第一页造成的顺序偏差：
 https://techdocs.gbif.org/en/openapi/v1/occurrence
+
+若某月没有可用记录，界面会淡显最近前后有记录月份的聚合范围，并明确标记为“邻月参考”；这保证年度阅读连续，但不构成该月实测证据。北京雨燕的物种叙述与长距离迁徙路线另参考 25 只北京繁殖成鸟的光照地理定位器研究：
+https://doi.org/10.1186/s40462-022-00329-2
 
 迁徙路线的研究校核入口：
 

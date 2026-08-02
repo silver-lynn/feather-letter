@@ -6,7 +6,8 @@
     "yearRange": "2016,2026",
     "cellDegrees": 10,
     "meaning": "Relative intensity of sampled presence records; not population abundance.",
-    "privacy": "Coordinates aggregated to 10-degree cells; exact records are not published."
+    "privacy": "Coordinates aggregated to 10-degree cells; exact records are not published.",
+    "sampling": "Current published file uses at most the first 300 API results per species-month. This is a prototype sample, not a representative census; future rebuilds use stratified offsets across up to five API pages."
   },
   "species": {
     "oriental-stork": {

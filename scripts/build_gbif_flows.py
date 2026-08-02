@@ -24,6 +24,8 @@ API = "https://api.gbif.org/v1"
 YEAR_RANGE = "2016,2026"
 CELL_DEGREES = 10
 PAGE_SIZE = 300
+SAMPLE_PAGES = 5
+MAX_OFFSET = 100_000
 
 SPECIES = {
     "oriental-stork": "Ciconia boyciana",
@@ -78,7 +80,13 @@ def fetch_month(taxon_key: int, month: int) -> tuple[int, list[dict], int]:
     }
     first = get_json("occurrence/search", {**base, "offset": 0})
     total = int(first.get("count", 0))
+    max_offset = min(max(0, total - PAGE_SIZE), MAX_OFFSET - PAGE_SIZE)
+    offsets = {0}
+    if max_offset:
+        offsets.update(round(max_offset * i / (SAMPLE_PAGES - 1)) for i in range(1, SAMPLE_PAGES))
     pages = [first]
+    for offset in sorted(offsets - {0}):
+        pages.append(get_json("occurrence/search", {**base, "offset": offset}))
 
     cells: Counter[tuple[float, float]] = Counter()
     sampled = 0
