@@ -1,0 +1,162 @@
+:root {
+  --ink: #1f302a;
+  --muted: #61736c;
+  --paper: #f5f1e7;
+  --sea: #d6e7e2;
+  --land: #efe8d6;
+  --accent: #dd744f;
+  --line: rgba(37, 59, 51, .15);
+  --waterbird: #357b87;
+  --shorebird: #d37850;
+  --raptor: #917146;
+  --songbird: #788c48;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+button, input { font: inherit; }
+button { color: inherit; }
+.app-shell { min-height: 100vh; }
+
+.topbar {
+  height: 76px;
+  padding: 0 clamp(20px, 4vw, 64px);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  background: rgba(245, 241, 231, .92);
+}
+.brand { display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; width: max-content; }
+.brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--ink); border-radius: 50%; font-size: 25px; transform: rotate(-12deg); }
+.brand strong, .brand small { display: block; }
+.brand strong { font-family: "STKaiti", "KaiTi", serif; font-size: 20px; letter-spacing: .08em; }
+.brand small { color: var(--muted); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
+.topbar-copy { text-align: center; }
+.topbar-copy p { margin: 0 0 3px; font-size: 14px; font-weight: 650; letter-spacing: .08em; }
+.topbar-copy span { color: var(--muted); font-size: 11px; }
+.text-button { justify-self: end; border: 0; border-bottom: 1px solid var(--ink); padding: 4px 0; background: none; cursor: pointer; }
+
+.map-stage { padding: 34px clamp(18px, 4vw, 64px) 0; }
+.map-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 22px; gap: 30px; }
+.eyebrow { margin: 0 0 9px; color: #8c6553; font-size: 10px; font-weight: 700; letter-spacing: .22em; }
+.map-heading h1 { margin: 0; font-family: "STKaiti", "KaiTi", serif; font-weight: 500; font-size: clamp(30px, 4vw, 52px); line-height: 1.1; }
+.map-heading h1 span { color: var(--accent); }
+.month-summary { margin: 11px 0 0; color: var(--muted); font-size: 14px; }
+.season-badge { flex: none; display: flex; gap: 9px; align-items: center; margin-bottom: 5px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.4); font-size: 12px; }
+.season-badge span { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px rgba(221,116,79,.13); }
+
+.map-wrap { position: relative; max-width: 1500px; margin: 0 auto; }
+#worldMap { display: block; width: 100%; height: auto; overflow: hidden; border: 1px solid rgba(31,48,42,.1); border-radius: 28px; box-shadow: 0 22px 50px rgba(52,70,62,.08); }
+.grid-lines path { fill: none; stroke: rgba(38, 88, 78, .09); stroke-width: 1; stroke-dasharray: 3 8; }
+.continents path { fill: var(--land); stroke: rgba(69,82,73,.25); stroke-width: 1.2; }
+.china-focus circle { fill: rgba(221,116,79,.04); stroke: rgba(221,116,79,.3); stroke-width: 1.4; stroke-dasharray: 4 7; }
+.china-focus text { fill: rgba(31,48,42,.5); font-size: 12px; font-weight: 700; text-anchor: middle; letter-spacing: .16em; }
+.route { fill: none; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 5 9; opacity: .3; }
+.route.active { stroke-width: 3; opacity: .8; }
+.bird-marker { cursor: pointer; transition: opacity .25s ease; outline: none; }
+.bird-marker .halo { fill: rgba(255,255,255,.78); stroke-width: 1.5; }
+.bird-marker use { filter: url(#markerShadow); }
+.bird-marker text { opacity: 0; font-size: 10px; font-weight: 700; text-anchor: middle; paint-order: stroke; stroke: rgba(245,241,231,.9); stroke-width: 4px; stroke-linejoin: round; transition: opacity .16s ease; }
+.bird-marker:hover .halo, .bird-marker:focus .halo, .bird-marker.active .halo { stroke-width: 3; fill: white; }
+.bird-marker:hover text, .bird-marker:focus text, .bird-marker.active text { opacity: 1; }
+
+.species-card {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: min(325px, calc(100% - 44px));
+  padding: 22px;
+  border: 1px solid rgba(31,48,42,.14);
+  border-radius: 19px;
+  background: rgba(250,248,241,.95);
+  box-shadow: 0 18px 46px rgba(33,54,47,.18);
+  backdrop-filter: blur(12px);
+  transform: translateY(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: .22s ease;
+}
+.species-card.open { transform: none; opacity: 1; visibility: visible; }
+.card-close, .dialog-close { position: absolute; top: 12px; right: 14px; border: 0; background: transparent; font-size: 24px; cursor: pointer; }
+.species-title-row { display: flex; align-items: center; gap: 14px; padding-right: 22px; }
+.species-icon { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; color: white; font-size: 21px; }
+.species-title-row p { margin: 0 0 3px; color: var(--muted); font-size: 10px; letter-spacing: .12em; }
+.species-title-row h2 { margin: 0; font-family: "STKaiti", "KaiTi", serif; font-size: 25px; font-weight: 600; }
+.species-title-row em { display: block; margin-top: 2px; color: var(--muted); font-family: Georgia, serif; font-size: 11px; }
+.current-location { margin-top: 19px; padding: 15px; border-radius: 13px; background: #edf1e9; }
+.current-location span { color: var(--muted); font-size: 11px; }
+.current-location strong { display: block; margin-top: 5px; font-size: 17px; }
+.current-location p { margin: 5px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.species-facts { margin: 17px 0 0; }
+.species-facts div { display: grid; grid-template-columns: 76px 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+.species-facts dt { color: var(--muted); }
+.species-facts dd { margin: 0; }
+.card-note { margin: 14px 0 0; color: #8b6552; font-size: 10px; line-height: 1.5; }
+
+.controls-panel { display: grid; grid-template-columns: 46px 1fr; gap: 18px; align-items: center; padding: 20px 4px 28px; }
+.play-button { width: 44px; height: 44px; border: 1px solid var(--ink); border-radius: 50%; background: var(--ink); color: white; cursor: pointer; }
+.play-button span { display: block; transform: translateX(1px); }
+.timeline { min-width: 0; }
+.month-labels { display: grid; grid-template-columns: repeat(12, 1fr); margin: 0 5px 7px; color: var(--muted); font-size: 10px; text-align: center; }
+#monthSlider { width: 100%; height: 5px; margin: 0; accent-color: var(--accent); cursor: pointer; }
+
+.lower-panel { padding: 48px clamp(18px, 4vw, 64px) 36px; background: #ebe5d8; }
+.filter-block { display: flex; align-items: end; justify-content: space-between; gap: 24px; max-width: 1500px; margin: 0 auto 24px; }
+.filter-block h2 { margin: 0; font-family: "STKaiti", "KaiTi", serif; font-size: 29px; font-weight: 500; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.filter-chip { border: 1px solid rgba(31,48,42,.18); border-radius: 999px; padding: 7px 12px; background: transparent; font-size: 11px; cursor: pointer; }
+.filter-chip.active { background: var(--ink); color: white; }
+.species-list { display: grid; grid-template-columns: repeat(5, 1fr); gap: 9px; max-width: 1500px; margin: 0 auto; }
+.species-row { display: flex; align-items: center; gap: 9px; border: 1px solid rgba(31,48,42,.11); border-radius: 11px; padding: 10px; background: rgba(255,255,255,.3); cursor: pointer; text-align: left; }
+.species-row:hover { background: rgba(255,255,255,.65); }
+.species-row span { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+.species-row b { display: block; font-size: 12px; }
+.species-row small { color: var(--muted); font-size: 9px; }
+footer { display: flex; justify-content: space-between; gap: 24px; max-width: 1500px; margin: 38px auto 0; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 10px; }
+footer p { margin: 0; }
+footer div { display: flex; gap: 14px; flex-wrap: wrap; }
+footer a { color: inherit; }
+
+dialog { width: min(520px, calc(100% - 32px)); padding: 30px; border: 0; border-radius: 20px; color: var(--ink); background: #faf8f1; box-shadow: 0 30px 90px rgba(20,36,31,.28); }
+dialog::backdrop { background: rgba(26,42,37,.45); backdrop-filter: blur(3px); }
+dialog h2 { margin: 0 0 13px; font-family: "STKaiti", "KaiTi", serif; font-size: 29px; font-weight: 500; }
+dialog p, dialog li { color: var(--muted); font-size: 13px; line-height: 1.7; }
+dialog ul { padding-left: 20px; }
+
+@media (max-width: 1000px) {
+  .species-list { grid-template-columns: repeat(4, 1fr); }
+  .species-card { top: 12px; right: 12px; }
+}
+@media (max-width: 720px) {
+  .topbar { height: 64px; grid-template-columns: 1fr auto; }
+  .topbar-copy { display: none; }
+  .brand-mark { width: 31px; height: 31px; }
+  .map-stage { padding-top: 25px; }
+  .map-heading { align-items: start; }
+  .map-heading h1 { font-size: 31px; }
+  .month-summary { max-width: 250px; font-size: 12px; }
+  .season-badge { padding: 7px 10px; }
+  .map-wrap { margin-inline: -18px; }
+  #worldMap { width: 960px; max-width: none; height: 500px; transform: translateX(calc((100vw - 960px) * .78)); border-radius: 0; }
+  .map-wrap { height: 500px; overflow: hidden; }
+  .species-card { position: fixed; top: auto; left: 12px; right: 12px; bottom: 12px; width: auto; z-index: 10; }
+  .controls-panel { padding-top: 16px; }
+  .month-labels span:nth-child(even) { visibility: hidden; }
+  .filter-block { display: block; }
+  .filter-chips { justify-content: flex-start; margin-top: 18px; }
+  .species-list { grid-template-columns: repeat(2, 1fr); }
+  footer { display: block; }
+  footer div { margin-top: 14px; }
+}
+@media (max-width: 390px) {
+  .species-list { grid-template-columns: 1fr 1fr; }
+  .species-row { padding: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }

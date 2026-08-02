@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>羽毛信 · 鸟群地图设计</title>
+  <link rel="stylesheet" href="maps.css">
+  <link rel="stylesheet" href="maps-refined.css">
+</head>
+<body class="map-style-d">
+  <svg class="symbol-sprite" aria-hidden="true">
+    <symbol id="flock-oriental-stork" viewBox="0 0 80 40"><path d="M37 19C28 12 16 7 2 5c8 8 16 15 27 20l-17 7c11 0 21-2 29-7 8 3 16 3 23 0l-8-4 12-3-13-3c-6-2-12 0-18 4Z" fill="currentColor"/><path d="M55 17c7-3 13-4 19-2l5 3-8 1c-5 0-10 1-16 3M45 26l8 11m-3-12 10 10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+    <symbol id="flock-spoon-billed-sandpiper" viewBox="0 0 80 40"><path d="M35 19C26 10 16 6 4 4c7 8 13 15 23 20l-15 8c11 0 20-2 28-7 7 2 13 1 18-2l-5-4c-6-4-12-4-18 0Z" fill="currentColor"/><path d="M56 19 72 17l7 3-7 3-16-1M41 26l4 10m1-11 6 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="flock-beijing-swift" viewBox="0 0 80 40"><path d="M1 4c17 5 29 10 39 19C50 13 63 7 79 3 68 13 59 20 48 25l8 11-16-7-16 8 8-12C20 21 10 14 1 4Z" fill="currentColor"/></symbol>
+    <symbol id="flock-bar-headed-goose" viewBox="0 0 80 40"><path d="M34 18C24 9 13 5 1 4c8 8 15 15 25 20L11 33c12-1 22-3 30-8 7 3 13 3 19 0l-5-4c-7-5-14-5-21-3Z" fill="currentColor"/><path d="M56 21c6-8 11-10 16-8l7 4-8 2c-4 0-8 2-11 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="m65 14 3 4m2-5 3 4" stroke="currentColor" stroke-width="1.5"/></symbol>
+  </svg>
+
+  <header>
+    <a href="index.html" class="brand"><span>⌁</span><div><b>羽毛信</b><small>FEATHER LETTER</small></div></a>
+    <div class="title"><b>鸟群分布 × 地图设计</b><small>GBIF 公开观测记录聚合样张</small></div>
+    <a href="concepts.html" class="back">返回界面样张</a>
+  </header>
+
+  <section class="chooser">
+    <div><p>OBSERVATION DENSITY</p><h1>候鸟月度观测分布</h1></div>
+    <div class="chosen-style"><i>D</i><div><b>观测密度</b><small>地图范围随当月记录自动变化</small></div></div>
+  </section>
+
+  <main>
+    <section class="map-shell">
+      <div class="map-head">
+        <div><span id="styleLabel">方案 D · 观测密度</span><h2 id="monthTitle">四月的鸟群分布</h2></div>
+        <div class="map-context">
+          <label class="location-picker" for="locationSelect"><span>我的位置</span><select id="locationSelect" aria-label="选择所在地"></select></label>
+          <div class="evidence-badge"><b id="scopeLabel">中国及附近</b><small id="recordSummary">正在读取 GBIF 数据…</small></div>
+        </div>
+      </div>
+      <div class="map-canvas">
+        <svg id="flockMap" viewBox="0 0 1000 520" role="img" aria-label="依据公开观测记录聚合的候鸟鸟群分布图">
+          <defs>
+            <linearGradient id="seaA" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#cce8e2"/><stop offset="1" stop-color="#8cbeb8"/></linearGradient>
+            <radialGradient id="seaB"><stop stop-color="#183c4d"/><stop offset="1" stop-color="#081923"/></radialGradient>
+            <radialGradient id="locationWash"><stop offset="0" stop-color="#2f7a74" stop-opacity=".36"/><stop offset=".38" stop-color="#2f7a74" stop-opacity=".19"/><stop offset="1" stop-color="#2f7a74" stop-opacity="0"/></radialGradient>
+            <filter id="flockGlow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="locationBlur" x="-35%" y="-35%" width="170%" height="170%"><feGaussianBlur stdDeviation="3.5"/></filter>
+            <filter id="paperNoise"><feTurbulence baseFrequency=".85" numOctaves="2" stitchTiles="stitch" type="fractalNoise"/><feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .08 0"/></filter>
+          </defs>
+          <rect class="ocean" width="1000" height="520"/>
+          <g class="graticule"><path d="M0 104H1000M0 208H1000M0 312H1000M0 416H1000M125 0V520M250 0V520M375 0V520M500 0V520M625 0V520M750 0V520M875 0V520"/></g>
+          <g id="mapCountries"></g>
+          <g id="userLocationHighlight"></g>
+          <g id="researchRoute"></g>
+          <g id="flockLayer"></g>
+          <rect class="texture" width="1000" height="520" filter="url(#paperNoise)"/>
+        </svg>
+        <div class="map-key"><span><i class="three-birds">⌁⌁⌁</i> 同一网格的一群记录</span><span><i class="dot"></i> 记录越集中，飞鸟图标越多</span></div>
+        <div class="focus-label">EAST ASIA · 70°E—180°E</div>
+      </div>
+
+      <div class="controls">
+        <div class="species-tabs" id="mapSpecies" aria-label="选择物种"></div>
+        <div class="month-control"><button id="mapPlay" aria-label="播放">▶</button><input id="mapMonth" type="range" min="1" max="12" value="4" aria-label="月份"><div class="ticks"><span>1月</span><span>3月</span><span>5月</span><span>7月</span><span>9月</span><span>11月</span></div></div>
+      </div>
+    </section>
+
+    <aside class="explain">
+      <img id="birdPhoto" src="assets/references/oriental-stork.jpg" alt="东方白鹳参考照片">
+      <div class="bird-title"><span id="birdIcon"></span><div><small id="birdLatin">Ciconia boyciana</small><h3 id="birdName">东方白鹳</h3></div></div>
+      <p id="designCopy">像自然图鉴一样安静，让国家边界退后，鸟群与湿地色成为主角。</p>
+      <div class="fun-fact" id="funFactBox">
+        <small>FUN FACT · 有趣发现</small>
+        <p id="birdFunFact"></p>
+        <a id="birdFactSource" target="_blank" rel="noreferrer">查看依据 ↗</a>
+      </div>
+      <div class="quality-card">
+        <b>这张图能说明什么？</b>
+        <p>图标位置来自 2016–2026 年 GBIF 带坐标的“存在”记录，按月份和约 10°网格聚合。它说明公开记录集中在哪里，不等于真实种群数量。</p>
+        <dl><div><dt>空间粒度</dt><dd>约 10° 网格</dd></div><div><dt>精确坐标</dt><dd>不公开</dd></div><div><dt>当前样本</dt><dd id="sampleCount">—</dd></div></dl>
+        <a href="https://techdocs.gbif.org/en/openapi/v1/occurrence" target="_blank" rel="noreferrer">查看 GBIF Occurrence API ↗</a>
+      </div>
+      <p class="warning" id="dataWarning"></p>
+    </aside>
+  </main>
+
+  <footer><span>用于设计确认 · 鸟群符号表示相对记录强弱</span><span>Natural Earth 边界 · GBIF occurrence data</span></footer>
+  <script src="extra-birds.js"></script>
+  <script src="maps.js"></script>
+  <script src="bird-visuals.js"></script>
+  <script src="location-picker.js"></script>
+</body>
+</html>

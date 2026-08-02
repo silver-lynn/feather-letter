@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="羽毛信：用年度迁徙基线理解中国候鸟每个月大概飞到哪里。" />
+  <title>羽毛信 · 候鸟迁徙月历</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="羽毛信首页">
+        <span class="brand-mark" aria-hidden="true">⌁</span>
+        <span><strong>羽毛信</strong><small>Feather Letter</small></span>
+      </a>
+      <div class="topbar-copy">
+        <p>中国候鸟迁徙月历</p>
+        <span>20 种代表候鸟 · 年度基线示意</span>
+      </div>
+      <button id="aboutBtn" class="text-button" type="button">如何阅读</button>
+    </header>
+
+    <section class="map-stage" aria-label="候鸟迁徙世界地图">
+      <div class="map-heading">
+        <div>
+          <p class="eyebrow">ANNUAL MIGRATION CLOCK</p>
+          <h1><span id="monthTitle">三月</span>，它们飞到哪里了？</h1>
+          <p id="monthSummary" class="month-summary">北迁开始，水鸟与滨鸟陆续离开南方越冬地。</p>
+        </div>
+        <div class="season-badge"><span id="seasonDot"></span><b id="seasonLabel">春迁启动</b></div>
+      </div>
+
+      <div class="map-wrap">
+        <svg id="worldMap" viewBox="0 0 1200 620" role="img" aria-label="世界地图及候鸟迁徙位置">
+          <defs>
+            <linearGradient id="seaGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#dcece8" />
+              <stop offset="1" stop-color="#c9dfda" />
+            </linearGradient>
+            <filter id="markerShadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#23352f" flood-opacity=".22" />
+            </filter>
+            <path id="birdShape" d="M-13 2 C-7-8-1-8 0-1 C2-8 8-8 14 1 C8-2 5 1 1 5 C-3 1-7-1-13 2Z" />
+          </defs>
+          <rect width="1200" height="620" rx="28" fill="url(#seaGradient)" />
+          <g class="grid-lines" aria-hidden="true">
+            <path d="M0 155H1200M0 310H1200M0 465H1200" />
+            <path d="M200 0V620M400 0V620M600 0V620M800 0V620M1000 0V620" />
+          </g>
+          <g class="continents" aria-hidden="true">
+            <path d="M50 129L95 76 174 49 242 68 279 116 254 158 209 174 195 224 151 247 119 218 78 202 54 165Z" />
+            <path d="M229 247L278 268 302 321 291 379 270 442 231 526 207 486 218 423 188 366 192 302Z" />
+            <path d="M517 91L575 62 657 70 721 90 786 82 866 102 955 131 1042 165 1080 207 1035 236 982 221 939 253 873 247 833 285 778 273 735 225 676 207 628 225 584 199 536 185 500 145Z" />
+            <path d="M565 210L624 204 681 236 702 299 678 365 647 429 603 492 563 449 548 381 515 324 524 264Z" />
+            <path d="M948 385L1012 367 1087 400 1122 451 1096 500 1027 511 981 478 943 429Z" />
+            <path d="M406 84L449 64 475 78 460 112 418 120Z" />
+            <path d="M1086 280L1112 267 1128 291 1112 315Z" />
+          </g>
+          <g class="china-focus" aria-hidden="true">
+            <circle cx="930" cy="226" r="78" />
+            <text x="930" y="230">中国</text>
+          </g>
+          <g id="routeLayer"></g>
+          <g id="birdLayer"></g>
+        </svg>
+
+        <aside id="speciesCard" class="species-card" aria-live="polite">
+          <button id="closeCard" class="card-close" aria-label="关闭物种详情">×</button>
+          <div class="species-title-row">
+            <span id="speciesIcon" class="species-icon"></span>
+            <div><p id="speciesGroup"></p><h2 id="speciesName"></h2><em id="speciesLatin"></em></div>
+          </div>
+          <div class="current-location">
+            <span>本月大致位置</span>
+            <strong id="speciesLocation"></strong>
+            <p id="speciesState"></p>
+          </div>
+          <dl class="species-facts">
+            <div><dt>迁徙方向</dt><dd id="speciesDirection"></dd></div>
+            <div><dt>主要通道</dt><dd id="speciesFlyway"></dd></div>
+            <div><dt>保护等级</dt><dd id="speciesStatus"></dd></div>
+          </dl>
+          <p class="card-note">图上位置为多年资料概括后的月份基线，不代表任何个体的实时定位。</p>
+        </aside>
+      </div>
+
+      <div class="controls-panel">
+        <button id="playBtn" class="play-button" type="button" aria-label="播放年度迁徙动画"><span>▶</span></button>
+        <div class="timeline">
+          <div class="month-labels" aria-hidden="true">
+            <span>1月</span><span>2月</span><span>3月</span><span>4月</span><span>5月</span><span>6月</span>
+            <span>7月</span><span>8月</span><span>9月</span><span>10月</span><span>11月</span><span>12月</span>
+          </div>
+          <input id="monthSlider" type="range" min="1" max="12" step="1" value="3" aria-label="选择月份" />
+        </div>
+      </div>
+    </section>
+
+    <section class="lower-panel">
+      <div class="filter-block">
+        <div><p class="eyebrow">VISIBLE SPECIES</p><h2>这张地图上有谁？</h2></div>
+        <div id="groupFilters" class="filter-chips"></div>
+      </div>
+      <div id="speciesList" class="species-list"></div>
+      <footer>
+        <p><b>数据口径</b>：根据公开迁徙研究、历史观测与物种分布资料整理的科普示意。</p>
+        <div>
+          <a href="https://www.movebank.org/" target="_blank" rel="noreferrer">Movebank</a>
+          <a href="https://science.ebird.org/en/status-and-trends" target="_blank" rel="noreferrer">eBird Status & Trends</a>
+          <a href="https://datazone.birdlife.org/" target="_blank" rel="noreferrer">BirdLife DataZone</a>
+          <a href="https://www.eaaflyway.net/" target="_blank" rel="noreferrer">EAAFP</a>
+        </div>
+      </footer>
+    </section>
+  </main>
+
+  <dialog id="aboutDialog">
+    <button id="closeAbout" class="dialog-close" aria-label="关闭">×</button>
+    <p class="eyebrow">HOW TO READ</p>
+    <h2>这是一只“年度迁徙时钟”</h2>
+    <p>拖动月份，查看20种代表候鸟在一年中大致所在的区域。鸟头方向表示下一阶段的移动方向；虚线是物种典型迁徙路径。</p>
+    <ul>
+      <li>不是实时卫星定位，也不代表所有个体走同一条路。</li>
+      <li>同一种鸟可能存在不同种群、不同迁徙策略。</li>
+      <li>珍稀物种只展示大区域，不公开敏感栖息点。</li>
+    </ul>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

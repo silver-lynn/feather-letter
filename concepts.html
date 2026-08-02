@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>羽毛信 · 视觉方向样张</title>
+  <link rel="stylesheet" href="concepts.css" />
+</head>
+<body class="layout-a">
+  <svg class="symbol-sprite" aria-hidden="true">
+    <symbol id="icon-oriental-stork" viewBox="0 0 64 64">
+      <path d="M40 12c-7 4-10 10-8 18-12-5-22 1-23 11 9 8 25 8 34-1 5-5 7-13 4-20-2-5-4-7-7-8Z" fill="currentColor"/>
+      <path d="M41 13 57 7 45 18M25 43 22 59M34 44l3 15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-spoon-billed-sandpiper" viewBox="0 0 64 64">
+      <path d="M17 30c7-13 27-11 33 0 3 5-1 11-8 12H25c-9 0-12-6-8-12Z" fill="currentColor"/>
+      <path d="M18 32 5 34 2 38l15-1M29 42l-2 15M39 42l4 15" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-beijing-swift" viewBox="0 0 64 64">
+      <path d="M3 25C14 27 23 30 31 37c8-8 17-13 30-16-8 10-15 17-23 20l7 12-14-8-14 8 7-12C15 39 9 33 3 25Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="icon-bar-headed-goose" viewBox="0 0 64 64">
+      <path d="M6 28c13 1 22 4 29 11 7-8 15-13 24-16-5 10-10 17-17 21-8 5-18 5-26 0-5-4-9-9-10-16Z" fill="currentColor"/>
+      <path d="M36 38c5-7 5-15 0-22l5-8 5 8c-3 8-2 14 2 18" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <header class="concept-header">
+    <a class="brand" href="index.html"><span>⌁</span><div><b>羽毛信</b><small>FEATHER LETTER</small></div></a>
+    <div class="review-title"><b>视觉方向样张</b><span>4种鸟 · 科普插图 · 开放授权照片 · 精细世界地图</span></div>
+    <a class="back-link" href="index.html">返回第一版</a>
+  </header>
+
+  <section class="direction-switcher">
+    <div>
+      <p class="kicker">CHOOSE A DIRECTION</p>
+      <h1>先选一种“看鸟”的方式</h1>
+    </div>
+    <div class="direction-tabs" role="tablist" aria-label="界面方向">
+      <button class="direction-tab active" data-layout="a"><b>A</b><span>自然图鉴</span><small>地图主导，轻盈克制</small></button>
+      <button class="direction-tab" data-layout="b"><b>B</b><span>迁徙故事</span><small>插图主导，更有情绪</small></button>
+      <button class="direction-tab" data-layout="c"><b>C</b><span>观察研究台</span><small>地图与证据并重</small></button>
+    </div>
+  </section>
+
+  <main class="concept-main">
+    <div class="demo-caption">
+      <span id="layoutIndex">方案 A</span>
+      <p id="layoutDescription">像翻开一本会动的自然图鉴：先看迁徙全貌，再认识一只鸟。</p>
+      <em>建议用于公众科普首页</em>
+    </div>
+
+    <section class="demo-stage">
+      <div class="map-panel">
+        <div class="map-toolbar">
+          <div><span>年度迁徙基线</span><strong id="monthHeading">四月 · 春迁高峰</strong></div>
+          <div class="map-legend"><i></i>当前大致位置 <i></i>典型路线</div>
+        </div>
+        <svg id="conceptMap" viewBox="0 0 1000 520" role="img" aria-label="精细世界地图和4种候鸟的迁徙路线">
+          <defs>
+            <radialGradient id="oceanGlow" cx="75%" cy="36%" r="80%"><stop offset="0" stop-color="#dcefeb"/><stop offset="1" stop-color="#adcfc8"/></radialGradient>
+            <linearGradient id="landFill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f5efdf"/><stop offset="1" stop-color="#ddd5bf"/></linearGradient>
+            <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#183b33" flood-opacity=".25"/></filter>
+          </defs>
+          <rect width="1000" height="520" rx="26" fill="url(#oceanGlow)"/>
+          <g class="map-graticule"><path d="M0 130H1000M0 260H1000M0 390H1000M166 0V520M333 0V520M500 0V520M666 0V520M833 0V520"/></g>
+          <g id="countryLayer"></g>
+          <path class="flyway-wash" d="M900 28C820 110 795 170 800 252S785 390 760 490"/>
+          <g id="demoRouteLayer"></g>
+          <g id="demoMarkerLayer"></g>
+        </svg>
+        <div class="map-note"><span>地图来自 Natural Earth 公共领域数据</span><span>位置为月份尺度示意，并非实时定位</span></div>
+      </div>
+
+      <article class="bird-profile">
+        <div class="art-frame"><img id="heroIllustration" src="assets/illustrations/oriental-stork.png" alt="东方白鹳原创科普插图"/><span>原创科普插图</span></div>
+        <div class="profile-copy">
+          <div class="profile-heading">
+            <span id="heroIcon" class="hero-icon"><svg><use href="#icon-oriental-stork"/></svg></span>
+            <div><p id="heroGroup">鹳科 · 国家一级保护动物</p><h2 id="heroName">东方白鹳</h2><em id="heroLatin">Ciconia boyciana</em></div>
+          </div>
+          <p id="heroStory" class="hero-story">黑白分明的大型涉禽。四月，它正沿中国东部湿地一路北上，飞回东北平原繁殖。</p>
+          <div class="fact-row"><div><small>本月区域</small><b id="heroLocation">华东沿海—华北湿地</b></div><div><small>下一站</small><b id="heroNext">东北平原</b></div></div>
+          <div class="feature-tags" id="featureTags"><span>黑色长喙</span><span>红色眼圈</span><span>黑色飞羽</span></div>
+        </div>
+      </article>
+
+      <nav id="speciesRail" class="species-rail" aria-label="样张物种选择"></nav>
+
+      <div class="month-control">
+        <button id="demoPlay" aria-label="播放">▶</button>
+        <div><div class="month-ticks"><span>1月</span><span>3月</span><span>5月</span><span>7月</span><span>9月</span><span>11月</span></div><input id="demoMonth" type="range" min="1" max="12" value="4" aria-label="样张月份"/></div>
+      </div>
+    </section>
+
+    <section class="asset-review">
+      <div class="asset-heading"><div><p class="kicker">REFERENCE &amp; ASSET</p><h2>照片核对与插图方向</h2></div><p>照片负责证明“它真实长什么样”，插图负责统一网站气质。以下照片均为 Wikimedia Commons 开放授权素材，正式使用需保留署名和许可证。</p></div>
+      <div id="assetGrid" class="asset-grid"></div>
+    </section>
+  </main>
+  <script src="concepts.js"></script>
+</body>
+</html>

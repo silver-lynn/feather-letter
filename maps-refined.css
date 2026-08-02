@@ -1,0 +1,161 @@
+.map-style-d {
+  --accent: #2f7a74;
+}
+
+.chosen-style {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--ink);
+  color: white;
+}
+
+.chosen-style i {
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  font-style: normal;
+  font-size: 9px;
+}
+
+.chosen-style b,
+.chosen-style small { display: block; }
+.chosen-style b { font-size: 11px; }
+.chosen-style small { margin-top: 3px; font-size: 8px; opacity: .62; }
+
+.map-context {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.location-picker {
+  display: grid;
+  gap: 4px;
+  text-align: left;
+}
+
+.location-picker span {
+  color: var(--muted);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.location-picker select {
+  min-width: 96px;
+  padding: 6px 25px 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--ink);
+  font: 600 9px Inter,"PingFang SC","Microsoft YaHei",sans-serif;
+  cursor: pointer;
+}
+
+.flock-cluster use {
+  filter: drop-shadow(0 1px 1px rgba(20, 35, 31, .2));
+}
+
+.map-style-d .country.china {
+  fill: #f8f8f4;
+  stroke: #7e8984;
+  stroke-width: .55;
+}
+
+.user-location-wash {
+  fill: url(#locationWash);
+  stroke: none;
+  filter: url(#locationBlur);
+  pointer-events: none;
+}
+
+.user-location-core {
+  fill: var(--accent);
+  stroke: #fff;
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+
+.user-location-label {
+  fill: var(--accent);
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  paint-order: stroke;
+  stroke: #f7f8f5;
+  stroke-width: 2.4px;
+  stroke-linejoin: round;
+}
+
+.fun-fact {
+  margin: 4px 12px 12px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--accent);
+  background: rgba(47, 122, 116, .07);
+}
+
+.fun-fact small {
+  color: var(--accent);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .14em;
+}
+
+.fun-fact p {
+  margin: 6px 0 8px;
+  color: var(--ink);
+  font-size: 9px;
+  line-height: 1.65;
+}
+
+.fun-fact a {
+  color: var(--muted);
+  font-size: 7px;
+  text-underline-offset: 3px;
+}
+
+.bird-title > span,
+.map-style-d .bird-title > span {
+  width: 56px;
+  height: 34px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.bird-title svg { width: 50px; height: 28px; }
+.species-tabs svg { width: 36px; height: 22px; }
+
+.species-tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 6px;
+  padding: 1px 1px 7px;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+.species-tabs button {
+  flex: 0 0 145px;
+  min-width: 145px;
+  scroll-snap-align: start;
+}
+
+.scope-transition {
+  transition: opacity .22s ease;
+}
+
+@media (max-width: 600px) {
+  .chosen-style { margin-top: 16px; width: max-content; }
+  .map-head { height: auto; min-height: 88px; gap: 12px; }
+  .map-context { flex-direction: column; align-items: flex-end; gap: 6px; }
+  .location-picker { justify-items: end; }
+}
+.species-tabs button svg{color:var(--bird-color,currentColor)}
