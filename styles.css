@@ -34,7 +34,7 @@ button { color: inherit; }
   background: rgba(245, 241, 231, .92);
 }
 .brand { display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; width: max-content; }
-.brand-mark { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--ink); border-radius: 50%; font-size: 25px; transform: rotate(-12deg); }
+.brand-logo { width: 39px; height: 39px; display: block; flex: none; }
 .brand strong, .brand small { display: block; }
 .brand strong { font-family: "STKaiti", "KaiTi", serif; font-size: 20px; letter-spacing: .08em; }
 .brand small { color: var(--muted); font-size: 9px; letter-spacing: .16em; text-transform: uppercase; }
@@ -137,7 +137,7 @@ dialog ul { padding-left: 20px; }
 @media (max-width: 720px) {
   .topbar { height: 64px; grid-template-columns: 1fr auto; }
   .topbar-copy { display: none; }
-  .brand-mark { width: 31px; height: 31px; }
+  .brand-logo { width: 34px; height: 34px; }
   .map-stage { padding-top: 25px; }
   .map-heading { align-items: start; }
   .map-heading h1 { font-size: 31px; }
