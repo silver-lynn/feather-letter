@@ -26,6 +26,6 @@ const EXTRA_MAP_BIRDS={
   "far-eastern-curlew":{name:"大杓鹬",latin:"Numenius madagascariensis",photo:"assets/references/far-eastern-curlew.jpg",color:"#477483",iconType:"curlew",intro:"东亚体型最大的滨鸟之一，长而向下弯曲的嘴适合探取滩涂深处的无脊椎动物。"},
   "yellow-browed-warbler":{name:"黄眉柳莺",latin:"Phylloscopus inornatus",photo:"assets/references/yellow-browed-warbler.jpg",color:"#5d8390",iconType:"passerine",intro:"体型轻巧的林栖候鸟，具有醒目的浅色眉纹和翼斑，在中国大部分地区迁徙过境。"},
   "crested-honey-buzzard":{name:"凤头蜂鹰",latin:"Pernis ptilorhynchus",photo:"assets/references/crested-honey-buzzard.jpg",color:"#3f7482",iconType:"raptor",intro:"以蜂类幼虫和蜂巢为重要食物的迁徙猛禽，春夏在东亚繁殖，冬季南迁至东南亚。"},
-  "chinese-sparrowhawk":{name:"赤腹鹰",latin:"Accipiter soloensis",photo:"assets/references/chinese-sparrowhawk.jpg",color:"#567b8a",iconType:"raptor",intro:"体型较小、翼形较尖的迁徙猛禽，在中国东部繁殖，秋季大量通过东南沿海前往东南亚。"},
+  "chinese-sparrowhawk":{name:"赤腹鹰",latin:"Accipiter soloensis",photo:"assets/references/chinese-sparrowhawk.jpg?v=20260802",color:"#567b8a",iconType:"raptor",intro:"体型较小、翼形较尖的迁徙猛禽，在中国东部繁殖，秋季大量通过东南沿海前往东南亚。"},
   "amur-falcon":{name:"红脚隼",latin:"Falco amurensis",photo:"assets/references/amur-falcon.jpg",color:"#446f80",iconType:"falcon",intro:"在东北亚繁殖的小型隼类，秋季经印度迁往非洲南部，是跨越大陆与海洋的长距离迁徙者。"}
 };

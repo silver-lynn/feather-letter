@@ -4,9 +4,9 @@
 
 `references/*.jpg` 为可复用的 Wikimedia Commons 参考照片：
 
-- 东方白鹳：Ltshears，CC BY-SA 3.0，https://commons.wikimedia.org/wiki/File:Oriental_Stork.jpg
+- 东方白鹳：Spaceaero2，CC BY-SA 3.0，https://commons.wikimedia.org/wiki/File:Oriental_Stork_3_marugame_kagawa.jpg
 - 勺嘴鹬：tareq's Photography，CC BY-SA 4.0，https://commons.wikimedia.org/wiki/File:Spoon-billed_sandpiper.jpg
-- 北京雨燕：Shouyong & Linda Wong / FlyingBatt，CC BY-SA 4.0，https://commons.wikimedia.org/wiki/File:Apus_apus_Pekinensis_(Beijing_Swifts)_observed_near_Wulongting,_Beihai_Park,_Beijing,_China.jpg
+- 北京雨燕物种特征参考照（同种 Apus apus，未声称为北京繁殖种群个体）：Imran Shah，CC BY-SA 2.0，https://commons.wikimedia.org/wiki/File:Common_Swift_(Apus_apus)_(49771152216).jpg
 - 斑头雁：Charles J. Sharp，CC BY-SA 4.0，https://commons.wikimedia.org/wiki/File:Bar-headed_geese_(Anser_indicus).jpg
 
 `data/countries.geojson` 来自 Natural Earth 1:110m 国家边界数据，公共领域：
